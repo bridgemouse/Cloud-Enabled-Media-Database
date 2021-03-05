@@ -1,0 +1,81 @@
+Red Team Cloud Computing Enterprises
+Cloud Enabled Media Database
+Chris Ayling | Ethan Bridgehouse | Joe Cort | Payton Young
+
+Table of Contents
+
+1. Introduction
+1.1 Overview
+1.2 Scope
+1.3 Target Audience
+1.4 Objectives
+
+2. Resource Requirements
+2.1 Software
+2.2 Hardware
+
+3. Schedule
+3.1 Assumptions
+3.2 Dependencies
+3.3 Deliverables
+___________________________________________________________________________________
+
+1. Introduction
+1.1 Overview
+Our plan is to create a web server that will store information about various types of media. This server and associated 
+services will be containerized using Kubernetes and will be configured to be deployed on a cloud with each service being 
+configured to run as a separate container on a separate machine.
+
+(See Figure 1 in repository for network diagram)
+
+The web server will allow users to register a new account, and then use that account to create and record personalized 
+feedback about the specified media. Initially this feedback will be entirely text based but we plan to explore and 
+experiment with what is possible as we build our service. 
+
+1.2 Scope
+The scope of the project will be limited in terms of users, but it should be able to store information about any media
+in the database as well as allow the user to add new media to be reviewed. This small project is designed to allow the
+team to explore and develop solutions in a cloud based environment. The scope is subject to change based on growth of
+the project, at any point the team may need to refocus or readjust the scope in order to ensure product delivery. 
+
+1.3 Target Audience
+The project is being developed with a focus on learning and personal development. As a result the target audience may
+include future employers or leaders of the developers.  The goal of this is to present a clean working product that
+demonstrates to the audience a working portfolio of cloud computing skills. 
+
+1.4 Objectives
+The goal of this project is to hone the teams skills using cloud computing technologies as well as develop a product 
+that could be showcased in the future. The project objectives include, allow users to register and log in with 
+accounts, allow users to add new information about a selected media, allow users to add new media to be reviewed, allow
+users to interact with other users’ feedback and storing all of this information in an easy to reference database. More 
+objectives may arise as the team increases their ambition, or if time allows. 
+
+2. Resource Requirements
+2.1 Software
+The service will be built inside containers using Kubernetes to manage and create the containers. Inside separate
+containers the team will implement a database using mySQL, a sign on service using the LDAP protocol, and other services
+we hope to implement. Once the service is able to be tested as a set of containers we will use CloudLab to distribute and
+host the containers. CloudLab or another cloud provider is the intended long term host of the service. 
+
+2.2 Hardware
+We plan on making use of the m1 standard profile for our nodes until we make a better judgement on what kind of hardware 
+resources we will need. In the future we may allocate less powerful machines. The goal is to reduce the resource cost 
+without sacrificing system functionality. 
+
+3. Schedule 
+3.1 Assumptions
+The team will gather information and communicate using Discord. The team will use Github to do version control as well as 
+share and test code. The team assumes only legitimate users will be able to register accounts with the service. The team
+assumes the service will not be scalable and only act as a demonstration of ability and concept. 
+
+3.2 Dependencies
+The service will be dependent on several software and hardware resources. The service will be hosted and dependent on a 
+cloud provider in order to maintain service of the IaaS cloud. Kubernetes will be used to create and manage the containers 
+that parts of the service will run on. 
+
+3.3 Deliverables 
+A team description, as well as this documentation will be produced and maintained throughout the project. The 
+documentation will detail specific services that are installed as well as specifying which container they are to be 
+installed on. A second set of deliverables will include weekly Friday progress report, an in-class demonstration, a Q&A 
+session on the teams discord, and a recorded demonstration. The final deliverable will be the finished project, and 
+the Github repository that hosts all necessary composition requirements
