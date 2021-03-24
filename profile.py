@@ -20,12 +20,20 @@ request.addTour(tour)
 prefixForIP = "192.168.1."
 link = request.LAN("lan")
 
-num_nodes = 3
+num_nodes = 5
+
 for i in range(num_nodes):
   if i == 0:
     node = request.XenVM("head")
-  else:
-    node = request.XenVM("worker-" + str(i))
+  elif i == 1:
+    node = request.XenVM("ldapp")
+  elif i == 2:
+    node = request.XenVM("webserver")
+  elif i == 3:
+    node = request.XenVM("dbSql")
+  else: 
+    node = request.XenVM("datapuller")
+   
   node.cores = 4
   node.ram = 8192
   node.routable_control_ip = "true" 
