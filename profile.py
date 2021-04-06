@@ -53,8 +53,5 @@ for i in range(num_nodes):
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_manager.sh"))
   else:
     node.addService(pg.Execute(shell="sh", command="sudo bash /local/repository/kube_worker.sh"))
-    
-  if i == 3:
-    node.addService(pg.Executre(shell="sh", command ="sudo bash /local/repository/sqlgo.sh"))
-    
+      
 pc.printRequestRSpec(request)
