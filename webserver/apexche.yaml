@@ -1,0 +1,9 @@
+version "3.7"
+
+services:
+
+  webserver:
+  image: apex1:latest
+  restart: always
+  ports:
+    - 80:80
