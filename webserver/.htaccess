@@ -1,0 +1,12 @@
+# ./webserver/ldap-demo.conf
+AddType application/x-httpd-php.html
+
+#CURRENTLY DOES NOT WORK WILL NOT SPOOL UP IF BELOW LINES ARE UNCOMMENTED
+#PassEnv LDAP_BIND_ON
+#PassEnv LDAP_PASSWORD
+#PassEnv LDAP_URL
+#<AuthnProviderAlias ldap demo>
+#  AuthLDAPBindDN ${LDAP_BIND_ON}
+#  AuthLDAPBindPassword ${LDAP_PASSWORD}
+#  AuthLDAPURL ${LDAP_URL}
+#</AuthnProviderAlias>
