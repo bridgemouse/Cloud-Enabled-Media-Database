@@ -20,16 +20,14 @@ request.addTour(tour)
 prefixForIP = "192.168.1."
 link = request.LAN("lan")
 
-num_nodes = 5
+num_nodes = 4
 
 for i in range(num_nodes):
   if i == 0:
     node = request.XenVM("head")
   elif i == 1:
-    node = request.XenVM("ldappServer")
-  elif i == 2:
-    node = request.XenVM("ldappClient")
-  elif i ==3:
+    node = request.XenVM("ldapp")
+  elif i ==2:
     node = request.XenVM("webserver")
   else:
     node = request.XenVM("dbPosty")
