@@ -1,0 +1,8 @@
+version "3.7"
+
+services:
+  webserver: 
+  image: paisleyswerve/redimages:apex1
+  restart: always
+  ports: 
+    - 80:80
