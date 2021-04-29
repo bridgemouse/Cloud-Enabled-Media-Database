@@ -17,7 +17,7 @@ RUN echo "LogLevel debug" >> apache2.conf
 WORKDIR /var/www/html/demo
 
 # Configure apache to use the ldap configuration defined above
-COPY Docker/.htaccess ./.htaccess
+COPY .htaccess ./.htaccess
 
 # Copy the project files we need (we'll be creating this in step 3)
 COPY logmein.php ./
