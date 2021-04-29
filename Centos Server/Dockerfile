@@ -2,7 +2,7 @@ FROM centos:7
 
 # Install Apache
 RUN yum -y update
-RUN yum -y install httpd httpd-tools
+RUN yum -y install httpd httpd-tools debian:stretch apache2
 
 # Install EPEL Repo
 RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
@@ -21,13 +21,15 @@ EXPOSE 80
 # Start Apache
 CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
 
-#Added
-# Enable Apache ldap auth module
-#Enable after working with Joe
+
+FROM debian:stretch
+RUN apt-get update
+RUN apt-get install -y apache2
 
 #Added
 # Enable Apache ldap auth module
 #Enable after working with Joe
+RUN a2enmod authnz_ldap
 
 COPY ldap-demo.conf /etc/apache2/conf-enabled/
 
