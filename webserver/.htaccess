@@ -1,9 +1,7 @@
 # ./webserver/ldap-demo.conf
 AddType application/x-httpd-php.html
 
-#CURRENTLY DOES NOT WORK WILL NOT SPOOL UP IF BELOW LINES ARE UNCOMMENTED
-
-#AuthBasicProvider demo
-#AuthType Basic
-#AuthName "Protected Area"
-#Require valid-user
+AuthBasicProvider demo
+AuthType Basic
+AuthName "Protected Area"
+Require valid-user
