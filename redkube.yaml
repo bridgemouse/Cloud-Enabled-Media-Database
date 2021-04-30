@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: redspace
+---  
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"   
+  name: webserver
+  labels:
+    app: webserver
+spec:
+  ports:
+  - port: 80
+    name: webserver
+    targetPort: 80
+  type: NodePort
+  selector:
+    app: webserver
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true" 
+  name: redldap
+  labels:
+    app: redldap
+spec:
+  ports:
+  - port: 636
+    name: redldap
+    targetPort: 636
+  type: NodePort
+  selector:
+    app: redldap
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver
+  labels:
+    app: webserver
+spec:
+  selector:
+    matchLabels:
+      run: webserver
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: webserver
+    spec:  
+      containers:
+      - name: webserver
+        image: paisleyswerve/redimages:apex1
+        ports:
+        - containerPort: 80
+---        
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redldap
+  labels:
+    app: redldap
+spec:
+  selector:
+    matchLabels:
+      run: redldap
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: redldap
+    spec:
+      containers:
+      - name: redldap
+        image: paisleyswerve/redimages:redldap
+        ports:
+        - containerPort: 636        
