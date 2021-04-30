@@ -10,7 +10,7 @@ This is an informative media description and review service that is hosted by ou
 
 #changelog
 
--4/29
+-4/29 Wrote redkube Kubernetes deployment file and built CentOS based Apache image, which continues to throw a connection reset error. Enabling Kubernetes for docker desktop for testing purposes seems have caused errors as well. 
 
 -4/28 Attended office hours and troubleshot php-ldap module with Dr. Ngo, attempted to go down rabbit hole of binary installations before debating swtichig to a different CentOS image which Joe is leading the effort on. Updated repository with missing files from Payton's WSL workspace
 
