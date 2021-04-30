@@ -37,7 +37,7 @@ RUN echo "LogLevel debug" >> apache2.conf
 
 WORKDIR /var/www/html/
 
-#COPY .htaccess ./.htaccess
+COPY .htaccess ./.htaccess
 
 COPY logmein.php ./
 COPY forget.html ./
