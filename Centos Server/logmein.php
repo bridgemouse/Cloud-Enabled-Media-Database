@@ -1,7 +1,7 @@
 <?php
     $ldaprdn  = $_POST["username"];
     $ldappass = $_POST["password"];
-    $ldapconn = ldap_connect("ldap://somemorestuff") or die("Could not connect to LDAP server.");
+    $ldapconn = ldap_connect("ldap://172.22.71.12:389/none") or printf("Could not connect to LDAP server.");
 
 if ($ldapconn) 
 {
