@@ -21,22 +21,7 @@ EXPOSE 80
 # Start Apache
 CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
 
-
-#FROM debian:stretch
-#RUN apt-get update
-#RUN apt-get install -y apache2
-#RUN yum -y install apache-commons-lang
-#RUN yum -y install apache-commons-configuration
 RUN yum -y install mod_ldap
-
-#RUN mod_authnz_ldap
-
-
-#Added
-# Enable Apache ldap auth module
-#Enable after working with Joe
-#RUN a2enmod authnz_ldap
-#RUN authnz_ldap
 
 COPY ldap-demo.conf /etc/apache2/conf-enabled/
 
