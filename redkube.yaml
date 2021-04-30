@@ -29,11 +29,14 @@ metadata:
   labels:
     app: redldap
 spec:
+  clusterIP: 10.101.28.72
   ports:
-  - port: 636
-    name: redldap
-    targetPort: 636
-  type: NodePort
+  - name: ldapserver
+    port: 839
+    targetPort: 839
+  - name: ldapserveradmin
+    port: 8090
+    targetPort: 8090    
   selector:
     app: redldap
 --- 
@@ -75,8 +78,25 @@ spec:
       labels:
         run: redldap
     spec:
+      volumes:
+      - name: ldapdata
+        hostPath:
+          path: /var/lib/ldap
+      - name: ldapconfig   
+        hostPath:
+          path: /etc/ldap/slapd.d
       containers:
-      - name: redldap
-        image: paisleyswerve/redimages:redldap
+      - name: ldapserver
+        image: paisleyswerve/redimages:redldap 
         ports:
-        - containerPort: 636        
+        - containerPort: 389 
+        volumeMounts:
+        - name: ldapdata
+          mountPath: /var/lib/ldap
+        - name: ldapconfig
+          mountPath: /etc/ldap/slapd.d
+      - name: ldapserveradmin
+        image: paisleyswerve/redimages:redladmin         
+        ports:
+        - containerPort: 8090
+        
