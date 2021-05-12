@@ -15,7 +15,7 @@ spec:
   ports:
   - port: 80
     name: webserver
-    targetPort: 80
+    nodePort: 32080
   type: NodePort
   selector:
     app: webserver
@@ -32,11 +32,10 @@ spec:
   clusterIP: 10.101.28.72
   ports:
   - name: ldapserver
-    port: 839
-    targetPort: 839
+    port: 389
   - name: ldapserveradmin
     port: 8090
-    targetPort: 8090    
+    nodePort: 32090    
   selector:
     app: redldap
 --- 
@@ -49,12 +48,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: webserver
+      app: webserver
   replicas: 1
   template:
     metadata:
       labels:
-        run: webserver
+        app: webserver
     spec:  
       containers:
       - name: webserver
@@ -71,12 +70,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: redldap
+      app: redldap
   replicas: 1
   template:
     metadata:
       labels:
-        run: redldap
+        app: redldap
     spec:
       volumes:
       - name: ldapdata
