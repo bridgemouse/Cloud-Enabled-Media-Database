@@ -57,7 +57,7 @@ spec:
     spec:  
       containers:
       - name: webserver
-        image: paisleyswerve/redimages:apex1
+        image: jcort95/image_apache:latest
         ports:
         - containerPort: 80
 ---        
