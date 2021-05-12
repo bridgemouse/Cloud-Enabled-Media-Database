@@ -35,7 +35,7 @@ spec:
     port: 389
   - name: ldapserveradmin
     port: 8090
-    nodePort: 32090    
+    targetPort: 8090    
   selector:
     app: redldap
 --- 
