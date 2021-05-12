@@ -11,10 +11,12 @@ Setup:
 1. On Cloudlab, run RedTeamProjectFile, and set up the cluster on Emulab ideally. Wait for experiment to set up fully. This may take time to run the necessary installation scripts. 
 2. After setup is complete, ssh into the head node of the cluster and run the following command to ensure it is running correctly. 
 ```bash /local/repository/launch_network.sh```
-Use ```kubectl get nodes``` & ```kubectl cluster-info```
-3. Use ```kubectl apply -f /local/repository/redkube.yaml``` This will start all the defined pods and services that are defined in the yaml file. 
-4. Use ``` kubectl expose deployment webserver --type-LoadBalancer --name=bigload``` to create a LoadBalancer that will allow us to access the service from the outside. 
-5. ...tbc
+Use ```kubectl get nodes``` & ```kubectl cluster-info``` make sure the cluster is ready and to observe/write down the cluster's exposed IP address
+3. Use ```kubectl apply -f /local/repository/redkube.yaml``` This will start all the pods and services that are defined in the yaml file. 
+4. Use ```kubectl get svc``` to look at the services that were just started and observe the port for the webserver : 
+```webserver    NodePort    10.xxx.xxx.xxx   <none>        80:32080/TCP```   -> Especially ```80:32080/TCP``` the second number is the external port Kubernetes mapped that service to    
+  
+5. Go to exposedIP:port   (example:  10.xxx.xxx.xxx:32080)
 
 #changelog
 -4/30 Implemented Kubernetes cluster on cloudlab, however functionality is not as intended and there are fixes required in order to fully configure the LDAP server to fit into  Kubernetes NODEPORT scheme
