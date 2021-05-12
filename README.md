@@ -2,13 +2,22 @@
 RED TEAM consists of 4 members: Chris Ayling, Ethan Bridgehous, Joe Cort, and Payton Young
 
 Current Description of Project:
-
+Kubernetes cluster that hosts a webserver, LDAP authentication server, and postgres database on a cloudlab set of nodes. This service should allow users to login on the website and add information to the database. Several components of it are functional but not interconnected as of writing.
 
 Original Description of Project:
 This is an informative media description and review service that is hosted by our own web server. Users of the service are able to create their own personal account with log-in service using the LDAP protocol. The service will allow different users to locate a specific media that they would like to leave a review about. Other users will then be able to look up said media on their own account and be able to view the directory of reviews made over time. The database is maintained by use of MySQL.
 
+Setup: 
+1. On Cloudlab, run RedTeamProjectFile, and set up the cluster on Emulab ideally. Wait for experiment to set up fully. This may take time to run the necessary installation scripts. 
+2. After setup is complete, ssh into the head node of the cluster and run the following command to ensure it is running correctly. 
+```bash /local/repository/launch_network.sh```
+Use ```kubectl get nodes``` & ```kubectl cluster-info```
+3. Use ```kubectl apply -f /local/repository/redkube.yaml``` This will start all the defined pods and services that are defined in the yaml file. 
+4. Use ``` kubectl expose deployment webserver --type-LoadBalancer --name=bigload``` to create a LoadBalancer that will allow us to access the service from the outside. 
+5. ...tbc
 
 #changelog
+-4/30 Implemented Kubernetes cluster on cloudlab, however functionality is not as intended and there are fixes required in order to fully configure the LDAP server to fit into  Kubernetes NODEPORT scheme
 
 -4/29 Wrote redkube Kubernetes deployment file and built CentOS based Apache image, which continues to throw a connection reset error. Enabling Kubernetes for docker desktop for testing purposes seems have caused errors as well. 
 
