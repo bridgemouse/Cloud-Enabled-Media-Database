@@ -15,7 +15,6 @@ spec:
   type: NodePort
         selector: 
           app: posty
-    ##tier: postgreSQL
 ---
 apiVersion: apps/v1
 kind: Deployment
