@@ -16,7 +16,7 @@ Use ```kubectl get nodes``` & ```kubectl cluster-info``` make sure the cluster i
 4. Use ```kubectl get svc``` to look at the services that were just started and observe the port for the webserver : 
 ```webserver    NodePort    10.xxx.xxx.xxx   <none>        80:32080/TCP```   -> Especially ```80:32080/TCP``` the second number is the external port Kubernetes mapped that service to    
   
-5. Go to exposedIP:port   (example:  10.xxx.xxx.xxx:32080)
+5. Go to exposedIP:port   (example:  155.xxx.xxx.xxx:32080)
 
 Navigating to the basic forgot password page works. When attempting authentication, the page will try to connect and eventually the LDAP bind will fail. At the moment we are not able to navigate to the LDAP admin page either. We were able to access it when the services were running as containers on a single machine, but not as a cluster due to not being able to use both the clusterIP and nodePort service in the yaml file. 
 
