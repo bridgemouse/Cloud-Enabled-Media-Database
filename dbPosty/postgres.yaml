@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotation: 
+  annotations: 
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
   name: posty
   labels:
@@ -13,8 +13,8 @@ spec:
     name: posty
     nodePort: 31432
   type: NodePort
-        selector: 
-          app: posty
+  selector: 
+    app: posty
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -28,7 +28,7 @@ spec:
       app: posty
   replicas: 1
   template:
-    metaData:
+    metadata:
       labels:
         app: posty
     spec: 
