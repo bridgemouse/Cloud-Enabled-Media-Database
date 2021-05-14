@@ -1,3 +1,4 @@
+  
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -15,7 +16,7 @@ spec:
   ports:
   - port: 80
     name: webserver
-    targetPort: 80
+    nodePort: 32080
   type: NodePort
   selector:
     app: webserver
@@ -32,13 +33,29 @@ spec:
   clusterIP: 10.101.28.72
   ports:
   - name: ldapserver
-    port: 839
-    targetPort: 839
+    port: 389
   - name: ldapserveradmin
     port: 8090
     targetPort: 8090    
   selector:
     app: redldap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotation: 
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+  name: posty
+  labels:
+    app: posty
+spec:
+  ports:
+  - port: 5432
+    name: posty
+    nodePort: 31432
+  type: NodePort
+  selector: 
+    app: posty
 --- 
 apiVersion: apps/v1
 kind: Deployment
@@ -49,16 +66,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: webserver
+      app: webserver
   replicas: 1
   template:
     metadata:
       labels:
-        run: webserver
+        app: webserver
     spec:  
       containers:
       - name: webserver
-        image: paisleyswerve/redimages:apex1
+        image: jcort95/image_apache:latest
         ports:
         - containerPort: 80
 ---        
@@ -71,12 +88,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: redldap
+      app: redldap
   replicas: 1
   template:
     metadata:
       labels:
-        run: redldap
+        app: redldap
     spec:
       volumes:
       - name: ldapdata
@@ -100,23 +117,6 @@ spec:
         ports:
         - containerPort: 8090
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  annotation: 
-    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
-  name: posty
-  labels:
-    app: posty
-spec:
-  ports:
-  - port: 5432
-    name: posty
-    nodePort: 31432
-  type: NodePort
-        selector: 
-          app: posty
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -129,7 +129,7 @@ spec:
       app: posty
   replicas: 1
   template:
-    metaData:
+    metadata:
       labels:
         app: posty
     spec: 
