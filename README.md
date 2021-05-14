@@ -18,9 +18,13 @@ Use ```kubectl get nodes``` & ```kubectl cluster-info``` make sure the cluster i
   
 5. Go to exposedIP:port   (example:  155.xxx.xxx.xxx:32080)
 
-Navigating to the basic forgot password page works. When attempting authentication, the page will try to connect and eventually the LDAP bind will fail. At the moment we are not able to navigate to the LDAP admin page either. We were able to access it when the services were running as containers on a single machine, but not as a cluster due to not being able to use both the clusterIP and nodePort service in the yaml file. 
+Navigating to the basic forgot password page works. When attempting authentication, the page will try to connect and eventually the LDAP bind will fail. At the moment we are not able to navigate to the LDAP admin page either. We were able to access it when the services were running as containers on a single machine, but not as a cluster due to not being able to use both the clusterIP and nodePort service in the yaml file. The postgres service can also be deployed using ```kubectl apply -f /local/repository/postgres.yaml``` however having both redkube and postgres applied will cause both services to be unreacheable from the external IP. We believe this to be an issue with the way we are using the Nodeport service. This is why the services are defined seperately, as we could not get them to run together on Kubernetes. 
 
 #changelog
+-5/13 Added postgres service and updated redkube to include Joe's image
+
+-5/10 Updated readme with better instructions
+
 -4/30 Implemented Kubernetes cluster on cloudlab, however functionality is not as intended and there are fixes required in order to fully configure the LDAP server to fit into  Kubernetes NODEPORT scheme
 
 -4/29 Wrote redkube Kubernetes deployment file and built CentOS based Apache image, which continues to throw a connection reset error. Enabling Kubernetes for docker desktop for testing purposes seems have caused errors as well. 
